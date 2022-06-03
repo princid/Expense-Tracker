@@ -1,6 +1,10 @@
 # Expense-Tracker
 
-This is an Expense Tracker Website to track all your expenses and incomes manually at one place with your own user account.
+The objective of this project was to create an interactive and completely responsive Expense Tracker website which allows the user to track all of their expenses and income.
+
+Front-end : React, antd
+Back-end : Node.js, MongoDB Atlas
+Software used : Visual Studio, Figma (for UI)
 
 # Getting Started with Create React App
 
