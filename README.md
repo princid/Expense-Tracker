@@ -2,8 +2,8 @@
 
 The objective of this project was to create an interactive and completely responsive Expense Tracker website which allows the user to track all of their expenses and income.
 
-Front-end : React, antd
-Back-end : Node.js, MongoDB Atlas
+Front-end : React, antd  ||
+Back-end : Node.js, MongoDB Atlas  ||
 Software used : Visual Studio, Figma (for UI)
 
 # Getting Started with Create React App
