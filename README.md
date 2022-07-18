@@ -6,6 +6,15 @@ Front-end : React, antd  ||
 Back-end : Node.js, MongoDB Atlas  ||
 Software used : Visual Studio, Figma (for UI)
 
+# Some Glimpses of the Project :
+
+![image](https://user-images.githubusercontent.com/90444477/179441462-20778554-8e6b-4ffa-83d0-fc058bff4033.png)
+
+![image](https://user-images.githubusercontent.com/90444477/179441513-1ba3e4a2-2b61-45cc-b810-c4d3d4c64e74.png)
+
+![image](https://user-images.githubusercontent.com/90444477/179441577-33ce79a9-4c23-4d95-b299-d8a411714527.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
