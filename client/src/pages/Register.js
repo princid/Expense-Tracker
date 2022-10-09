@@ -15,6 +15,7 @@ function Register() {
       await axios.post("/api/users/register", values);
       message.success("Registration Successfull");
       setLoading(false);
+      navigate("/login");
     } catch (error) {
       message.error("Something went wrong");
       setLoading(false);
@@ -45,7 +46,7 @@ function Register() {
         <div className="col-md-4">
           <Form layout="vertical" onFinish={onFinish}>
             <h1>REGISTER</h1>
-           
+
             <Form.Item label="Name" name="name">
               <Input />
             </Form.Item>
