@@ -16,9 +16,64 @@ Software used : Visual Studio, Figma (for UI)
 
 ![image](https://user-images.githubusercontent.com/90444477/179441577-33ce79a9-4c23-4d95-b299-d8a411714527.png)
 
+# Contribute
 
-# Getting Started with Create React App
+I'm glad if you want to contribute to this project. Here are a few steps:
 
+- **Fork this repository** : it will create a public repository in your own GitHub account. Keep the link with the main branch of my repo so you'll be able to send me PR.
+- Then you can clone your new repository :muscle: and execute code following the Getting started (see under)
+- **Create a new branch** : `git checkout -b [mySuperFeature]` and add your contribution
+- Push your code : 
+  - `git add .`
+  - `git commit -m 'Commit message goes here'` and finally 
+  - `git push origin [mySuperFeature]` 
+- **Create a new pull request from your forked repository** (Click the New Pull Request button located at the top of your repo)
+- Wait for your new PR to be reviewed and merged
+
+Thanks a lot
+
+
+# Getting Started
+
+This project has a server part and a client part. You need to install and start both.
+
+## Install
+
+In the root directory of this project :
+
+1. Install all back-end dependencies
+
+```bash
+npm install
+```
+2. install all front-end dependencies
+
+```bash
+npm run client-install
+```
+
+## Run
+
+If you're coding into Vscode, you can split your terminal so you can run both scripts and see how it runs 😉
+
+1. Start server in development mode
+
+```bash
+npm run server
+```
+(💡 if you want to start server in production mode run `npm run start`)
+
+2. Start client
+
+```bash
+npm run client
+```
+App is ready and opens in your navigator 🎉
+
+## Create React App informations
+
+<details>
+<summary>Read all informations about available scripts and learn more about Creat React App applications</summary>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -87,3 +142,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</details>
