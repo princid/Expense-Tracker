@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Input, message, Modal, Select } from "antd";
 import Spinner from "./Spinner";
 import axios from "axios";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material"
+
 
 function AddEditTransaction({
   setShowAddEditTransactionModal,
@@ -11,6 +13,20 @@ function AddEditTransaction({
   getTransactions,
 }) {
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleChange = event => {
+    setValue(event.target.value);
+
+    console.log('value is:', event.target.value);
+    if (event.target.value < 0) {
+      setOpen(true);
+      document.getElementById("myForm").reset();
+
+    }
+
+  };
   const onFinish = async (values) => {
     try {
       const user = JSON.parse(localStorage.getItem("expense-tracker-user"));
@@ -48,14 +64,26 @@ function AddEditTransaction({
       onCancel={() => setShowAddEditTransactionModal(false)}
       footer={false}
     >
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle> Error</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Value of amount cannot be negative
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
       {loading && <Spinner />}
       <Form
         layout="vertical"
         className="transaction-form"
         onFinish={onFinish}
         initialValues={selectedItemForEdit}
+        id="myForm"
       >
-        <Form.Item label="Amount" name="amount">
+        <Form.Item label="Amount" name="amount" id="value" value={value} onBlur={handleChange}>
           <Input type="text" />
         </Form.Item>
 
