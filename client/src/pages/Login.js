@@ -40,7 +40,6 @@ function Login() {
         <div className="col-md-4">
           <Form layout="vertical" onFinish={onFinish}>
             <h1>LOGIN</h1>
-    
 
             <Form.Item label="Email" name="email">
               <Input />
@@ -50,10 +49,10 @@ function Login() {
             </Form.Item>
 
             <div className="d-flex justify-content-between align-items-center">
-              <Link to="/register">
+              <Link to="/register" className="linkTo">
                 Not Registered Yet , Click Here To Register
               </Link>
-              <button className="secondary" type="submit">
+              <button className="btn btn-outline-light" type="submit">
                 LOGIN
               </button>
             </div>

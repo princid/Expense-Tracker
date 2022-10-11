@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { Form, Input, message, Modal, Select } from "antd";
 import Spinner from "./Spinner";
 import axios from "axios";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material"
-
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 
 function AddEditTransaction({
   setShowAddEditTransactionModal,
@@ -16,16 +22,14 @@ function AddEditTransaction({
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(event.target.value);
 
-    console.log('value is:', event.target.value);
+    console.log("value is:", event.target.value);
     if (event.target.value < 0) {
       setOpen(true);
       document.getElementById("myForm").reset();
-
     }
-
   };
   const onFinish = async (values) => {
     try {
@@ -33,10 +37,10 @@ function AddEditTransaction({
       setLoading(true);
       if (selectedItemForEdit) {
         await axios.post("/api/transactions/edit-transaction", {
-           payload : {
+          payload: {
             ...values,
             userid: user._id,
-           },
+          },
           transactionId: selectedItemForEdit._id,
         });
         getTransactions();
@@ -83,14 +87,20 @@ function AddEditTransaction({
         initialValues={selectedItemForEdit}
         id="myForm"
       >
-        <Form.Item label="Amount" name="amount" id="value" value={value} onBlur={handleChange}>
+        <Form.Item
+          label="Amount"
+          name="amount"
+          id="value"
+          value={value}
+          onBlur={handleChange}
+        >
           <Input type="text" />
         </Form.Item>
 
         <Form.Item label="Type" name="type">
           <Select>
             <Select.Option value="income">Income</Select.Option>
-            <Select.Option value="expence">Expence</Select.Option>
+            <Select.Option value="expense">Expense</Select.Option>
           </Select>
         </Form.Item>
 

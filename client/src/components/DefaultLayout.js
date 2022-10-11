@@ -1,22 +1,27 @@
 import React from "react";
 import { Menu, Dropdown } from "antd";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 import "../resources/default-layout.css";
 function DefaultLayout(props) {
   const user = JSON.parse(localStorage.getItem("expense-tracker-user"));
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const menu = (
     <Menu
       items={[
         {
           label: (
-            <li onClick={()=>{
-              localStorage.removeItem('expense-tracker-user')
-              navigate("/login");
-            }}>Logout</li>
+            <li
+              className="btn btn-outline-success"
+              onClick={() => {
+                localStorage.removeItem("expense-tracker-user");
+                navigate("/login");
+              }}
+            >
+              Logout
+            </li>
           ),
-        }
+        },
       ]}
     />
   );
@@ -28,7 +33,7 @@ function DefaultLayout(props) {
         </div>
         <div>
           <Dropdown overlay={menu} placement="bottomLeft">
-            <button className='primary'>{user.name}</button>
+            <button className="primary">{user.name}</button>
           </Dropdown>
         </div>
       </div>
