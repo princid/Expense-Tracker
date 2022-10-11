@@ -98,7 +98,10 @@ function Home() {
                 setShowAddEditTransactionModal(true);
               }}
             />
-            <DeleteOutlined className="mx-3" onClick={()=>deleteTransaction(record)}/>
+            <DeleteOutlined
+              className="mx-3"
+              onClick={() => deleteTransaction(record)}
+            />
           </div>
         );
       },
@@ -133,7 +136,7 @@ function Home() {
             <Select value={type} onChange={(value) => setType(value)}>
               <Select.Option value="all">All</Select.Option>
               <Select.Option value="income">Income</Select.Option>
-              <Select.Option value="expence">Expence</Select.Option>
+              <Select.Option value="expense">Expense</Select.Option>
             </Select>
           </div>
         </div>
