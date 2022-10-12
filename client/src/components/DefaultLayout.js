@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
+import { UserOutlined } from "@ant-design/icons";
 
 import "../resources/default-layout.css";
 function DefaultLayout(props) {
@@ -33,7 +34,10 @@ function DefaultLayout(props) {
         </div>
         <div>
           <Dropdown overlay={menu} placement="bottomLeft">
-            <button className="primary">{user.name}</button>
+            <button className="primary profile-button">
+              <UserOutlined />
+              <div className="profile-name">{user.name}</div>
+            </button>
           </Dropdown>
         </div>
       </div>
