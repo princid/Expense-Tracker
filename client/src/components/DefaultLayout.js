@@ -33,7 +33,7 @@ function DefaultLayout(props) {
           <h1 className="logo">EXPENSE TRACKER</h1>
         </div>
         <div>
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={menu} placement="bottomLeft">
             <button className="primary profile-button">
               <UserOutlined />
               <div className="profile-name">{user.name}</div>
