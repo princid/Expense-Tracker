@@ -16,10 +16,20 @@ body,html{
    border-radius: 3px;
 }
 
+.profile-button{
+    display:flex;
+    align-items: center;
+    padding:5px;
+}
+
 .secondary{
   background-color: #2dd421;
   padding:5px 20px;
   color: #fff !important;
   border: none;
   border-radius: 3px;
+}
+
+.profile-name {
+  padding: 0px 5px;
 }
