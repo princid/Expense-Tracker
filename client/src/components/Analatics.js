@@ -130,7 +130,9 @@ function Analatics({ transactions }) {
                     <h5>{category}</h5>
                     <Progress
                       strokeColor="#0B5AD9"
-                      percent={((amount / totalTurnover) * 100).toFixed(0)}
+                      percent={((amount / totalExpenceTurnover) * 100).toFixed(
+                        0
+                      )}
                     />
                   </div>
                 )
