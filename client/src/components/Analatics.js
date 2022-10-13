@@ -7,7 +7,7 @@ function Analatics({ transactions }) {
     (transaction) => transaction.type === "income"
   );
   const totalExpenceTransactions = transactions.filter(
-    (transaction) => transaction.type === "expence"
+    (transaction) => transaction.type === "expense"
   );
   const totalIncomeTransactionsPercentage =
     (totalIncomeTransactions.length / totalTransactions) * 100;
@@ -22,7 +22,7 @@ function Analatics({ transactions }) {
     .filter((transaction) => transaction.type === "income")
     .reduce((acc, transaction) => acc + transaction.amount, 0);
   const totalExpenceTurnover = transactions
-    .filter((transaction) => transaction.type === "expence")
+    .filter((transaction) => transaction.type === "expense")
     .reduce((acc, transaction) => acc + transaction.amount, 0);
   console.log(totalExpenceTurnover);
   const totalIncomeTurnoverPercentage =
@@ -50,7 +50,7 @@ function Analatics({ transactions }) {
             <h4>Total Transactions : {totalTransactions}</h4>
             <hr />
             <h5>Income : {totalIncomeTransactions.length}</h5>
-            <h5>Expence : {totalExpenceTransactions.length}</h5>
+            <h5>Expense : {totalExpenceTransactions.length}</h5>
 
             <div className="progress-bars">
               <Progress
@@ -73,7 +73,7 @@ function Analatics({ transactions }) {
             <h4>Total Turnover : {totalTurnover}</h4>
             <hr />
             <h5>Income : {totalIncomeTurnover}</h5>
-            <h5>Expence : {totalExpenceTurnover}</h5>
+            <h5>Expense : {totalExpenceTurnover}</h5>
 
             <div className="progress-bars">
               <Progress
@@ -91,7 +91,7 @@ function Analatics({ transactions }) {
           </div>
         </div>
       </div>
-       <hr />
+      <hr />
       <div className="row">
         <div className="col-md-6">
           <div className="category-analysis">
@@ -101,10 +101,17 @@ function Analatics({ transactions }) {
                 .filter((t) => t.type == "income" && t.category === category)
                 .reduce((acc, t) => acc + t.amount, 0);
               return (
-                amount > 0 && <div className="category-card">
-                  <h5>{category}</h5>
-                  <Progress strokeColor='#0B5AD9' percent={((amount / totalIncomeTurnover) * 100).toFixed(0)} />
-                </div>
+                amount > 0 && (
+                  <div className="category-card">
+                    <h5>{category}</h5>
+                    <Progress
+                      strokeColor="#0B5AD9"
+                      percent={((amount / totalIncomeTurnover) * 100).toFixed(
+                        0
+                      )}
+                    />
+                  </div>
+                )
               );
             })}
           </div>
@@ -112,16 +119,21 @@ function Analatics({ transactions }) {
 
         <div className="col-md-6">
           <div className="category-analysis">
-            <h4>Expence - Category Wise</h4>
+            <h4>Expense - Category Wise</h4>
             {categories.map((category) => {
               const amount = transactions
-                .filter((t) => t.type == "expence" && t.category === category)
+                .filter((t) => t.type == "expense" && t.category === category)
                 .reduce((acc, t) => acc + t.amount, 0);
               return (
-               amount > 0 && <div className="category-card">
-                  <h5>{category}</h5>
-                  <Progress strokeColor='#0B5AD9' percent={((amount / totalExpenceTurnover) * 100).toFixed(0)} />
-                </div>
+                amount > 0 && (
+                  <div className="category-card">
+                    <h5>{category}</h5>
+                    <Progress
+                      strokeColor="#0B5AD9"
+                      percent={((amount / totalTurnover) * 100).toFixed(0)}
+                    />
+                  </div>
+                )
               );
             })}
           </div>
