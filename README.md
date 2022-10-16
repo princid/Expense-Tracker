@@ -18,17 +18,9 @@ Software used : Visual Studio, Figma (for UI)
 
 # Contribute
 
-I'm glad if you want to contribute to this project. Here are a few steps:
+I'm glad if you want to contribute to this project. 
 
-- **Fork this repository** : it will create a public repository in your own GitHub account. Keep the link with the main branch of my repo so you'll be able to send me PR.
-- Then you can clone your new repository :muscle: and execute code following the Getting started (see under)
-- **Create a new branch** : `git checkout -b [mySuperFeature]` and add your contribution
-- Push your code : 
-  - `git add .`
-  - `git commit -m 'Commit message goes here'` and finally 
-  - `git push origin [mySuperFeature]` 
-- **Create a new pull request from your forked repository** (Click the New Pull Request button located at the top of your repo)
-- Wait for your new PR to be reviewed and merged
+Please follow [the contribution guide](./CONTRIBUTING.md).
 
 Thanks a lot
 
