@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 mongoose.connect(
-  "mongodb+srv://gagnam:prince55@cluster0.mjocc.mongodb.net/test",
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.mjocc.mongodb.net/test`,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
