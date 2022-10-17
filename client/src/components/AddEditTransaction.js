@@ -21,17 +21,20 @@ function AddEditTransaction({
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
+  const [dialog, setDialog] = useState({title: '', content: ''})
 
   const handleChange = (event) => {
     setValue(event.target.value);
 
-    console.log("value is:", event.target.value);
     if (event.target.value < 0) {
+      setDialog({ title: ' Error', content: 'Value of amount cannot be negative' });
       setOpen(true);
       document.getElementById("myForm").reset();
     }
   };
   const onFinish = async (values) => {
+    const isValid = validateFormInput(values)
+    if(!isValid) return;
     try {
       const user = JSON.parse(localStorage.getItem("expense-tracker-user"));
       setLoading(true);
@@ -61,24 +64,47 @@ function AddEditTransaction({
       setLoading(false);
     }
   };
-  return (
-    <Modal
-      title={selectedItemForEdit ? "Edit Transaction" : "Add Transaction"}
-      visible={showAddEditTransactionModal}
-      onCancel={() => setShowAddEditTransactionModal(false)}
-      footer={false}
-    >
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle> Error</DialogTitle>
+
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+  const validateFormInput = (values) => {
+    const fields = Object.keys(values);
+    const emptyFields = fields.filter((field) => values[field] === undefined || values[field] === '');
+    if (emptyFields.length === 0) return true;
+    const messagePostfix = emptyFields.length > 1 ? 'fields cannot be empty!' : 'field cannot be empty!'
+    const message = `${emptyFields.map(capitalizeFirstLetter).join(', ')} ${messagePostfix}`;
+    setOpen(true);
+    setDialog({ title: ' Validation Error', content: message });
+    return false;
+  };
+
+  const resetDialog = () => {
+    setOpen(false);
+    setDialog({ title: '', content: '' });
+  };
+
+  const CustomDialog = ({ open, onClose, title, content }) => {
+    return (
+      <Dialog open={open} onClose={onClose}>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Value of amount cannot be negative
-          </DialogContentText>
+          <DialogContentText>{content}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
         </DialogActions>
       </Dialog>
+    );
+  };
+
+  return (
+    <Modal
+      title={selectedItemForEdit ? 'Edit Transaction' : 'Add Transaction'}
+      visible={showAddEditTransactionModal}
+      onCancel={() => setShowAddEditTransactionModal(false)}
+      footer={false}
+    >
+      <CustomDialog open={open} onClose={resetDialog} title={dialog.title} content={dialog.content} />
       {loading && <Spinner />}
       <Form
         layout="vertical"
@@ -87,13 +113,7 @@ function AddEditTransaction({
         initialValues={selectedItemForEdit}
         id="myForm"
       >
-        <Form.Item
-          label="Amount"
-          name="amount"
-          id="value"
-          value={value}
-          onBlur={handleChange}
-        >
+        <Form.Item label="Amount" name="amount" id="value" value={value} onBlur={handleChange}>
           <Input type="text" />
         </Form.Item>
 
@@ -106,7 +126,6 @@ function AddEditTransaction({
 
         <Form.Item label="Category" name="category">
           <Select>
-            {" "}
             <Select.Option value="salary">Salary</Select.Option>
             <Select.Option value="freelance">Freelance</Select.Option>
             <Select.Option value="food">Food</Select.Option>
