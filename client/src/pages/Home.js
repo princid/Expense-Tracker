@@ -13,11 +13,14 @@ import {
 } from "@ant-design/icons";
 import moment from "moment";
 import Analatics from "../components/Analatics";
+import CustomDialog from '../components/CustomDialog';
 const { RangePicker } = DatePicker;
 function Home() {
   const [showAddEditTransactionModal, setShowAddEditTransactionModal] =
     useState(false);
   const [selectedItemForEdit, setSelectedItemForEdit] = useState(null);
+  const [selectedItemForDelete, setSelectedItemForDelete] = useState(null);
+  const [isDeleteConfirmationDialogOpen, setIsDeleteConfirmationDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [transactionsData, setTransactionsData] = useState([]);
   const [frequency, setFrequency] = useState("7");
@@ -46,20 +49,38 @@ function Home() {
     }
   };
 
-  const deleteTransaction = async (record) => {
+  const deleteTransaction = async () => {
     try {
       setLoading(true);
       await axios.post("/api/transactions/delete-transaction", {
-        transactionId: record._id,
+        transactionId: selectedItemForDelete._id,
       });
       message.success("Transaction Deleted successfully");
       getTransactions();
       setLoading(false);
+      setIsDeleteConfirmationDialogOpen(false)
     } catch (error) {
       setLoading(false);
       message.error("Something went wrong");
     }
   };
+
+  const DeleteTransactionConfirmationDialog = () => {
+    const message = "Are you sure you want to delete the transaction?";
+    const actions = [
+      { displayName: 'Cancel', onClick: () => setIsDeleteConfirmationDialogOpen(false) }, 
+      { displayName: 'Delete', onClick: deleteTransaction }
+    ];
+    return (
+      <CustomDialog open={isDeleteConfirmationDialogOpen} title={"Confirm Delete"} content={message} actions={actions} />
+    )
+  }
+
+  const onDeleteTransaction = (record) => {
+    setSelectedItemForDelete(record)
+    setIsDeleteConfirmationDialogOpen(true)
+  }
+
   useEffect(() => {
     getTransactions();
   }, [frequency, selectedRange, type]);
@@ -100,7 +121,7 @@ function Home() {
             />
             <DeleteOutlined
               className="mx-3"
-              onClick={() => deleteTransaction(record)}
+              onClick={() => onDeleteTransaction(record)}
             />
           </div>
         );
@@ -110,6 +131,7 @@ function Home() {
 
   return (
     <DefaultLayout>
+      <DeleteTransactionConfirmationDialog/>
       {loading && <Spinner />}
       <div className="filter d-flex justify-content-between align-items-center">
         <div className="d-flex">
