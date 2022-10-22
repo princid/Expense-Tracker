@@ -95,18 +95,18 @@ function AddEditTransaction({
         initialValues={selectedItemForEdit}
         id="myForm"
       >
-        <Form.Item label="Amount" name="amount" id="value" value={value} onBlur={handleChange}>
+        <Form.Item label="Amount" name="amount" id="value" value={value} onBlur={handleChange} rules={[{ required: true, message: 'Please input your amount!' }]}>
           <Input type="text" />
         </Form.Item>
 
-        <Form.Item label="Type" name="type">
+        <Form.Item label="Type" name="type" rules={[{ required: true, message: 'Please input your type!' }]}>
           <Select>
             <Select.Option value="income">Income</Select.Option>
             <Select.Option value="expense">Expense</Select.Option>
           </Select>
         </Form.Item>
 
-        <Form.Item label="Category" name="category">
+        <Form.Item label="Category" name="category" rules={[{ required: true, message: 'Please input your category!' }]}>
           <Select>
             <Select.Option value="salary">Salary</Select.Option>
             <Select.Option value="freelance">Freelance</Select.Option>
@@ -120,15 +120,15 @@ function AddEditTransaction({
           </Select>
         </Form.Item>
 
-        <Form.Item label="Date" name="date">
+        <Form.Item label="Date" name="date" rules={[{ required: true, message: 'Please input your date!' }]}>
           <Input type="date" />
         </Form.Item>
 
-        <Form.Item label="Reference" name="reference">
+        <Form.Item label="Reference" name="reference" rules={[{ required: true, message: 'Please input your reference!' }]}>
           <Input type="text" />
         </Form.Item>
 
-        <Form.Item label="Description" name="description">
+        <Form.Item label="Description" name="description" rules={[{ required: true, message: 'Please input your description!' }]}>
           <Input type="text" />
         </Form.Item>
 
