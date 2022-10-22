@@ -1,5 +1,5 @@
 # Expense-Tracker
-An expense tracker is a platform where we will list all our income and expenditures from various sources like salary , freelance , food , travel , medical , education etc to make an analysis about our money. So we can have any idea where we are spending our amount.
+An expense tracker is a platform where we will list all our income and expenditures from various sources like salary , freelance , food , travel , medical , education etc to make an analysis about our money. So we can have an idea where we are spending our amount.
 
 # What is an Expense Tracker?
 Personal finance management is an important part of people’s lives. However, everyone does not have the knowledge or time to manage their finances in a proper manner. And, even if a person has time and knowledge, they do not bother with tracking their expenses as they find it tedious and time-consuming. Now, you don’t have to worry about managing your expenses, as you can get access to an expense tracker that will help in the active management of your finances.
