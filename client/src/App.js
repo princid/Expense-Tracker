@@ -1,7 +1,9 @@
-// import logo from "./logo.svg";
 import "./App.css";
 import "antd/dist/antd.css";
-// import { Button } from "antd";
+
+// import logo from "./logo.svg"; TODO => Why do we have this? 
+// import { Button } from "antd"; TODO => Why do we have this? 
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
@@ -25,16 +27,11 @@ function App() {
 
 
 export function ProtectedRoute(props){
-
-  if(localStorage.getItem('expense-tracker-user'))
-  {
+  if(localStorage.getItem('expense-tracker-user')) {
     return props.children
-  }else{
+  } else{
    return <Navigate to='/login'/>
   }
-
 }
-
-
 
 export default App;
