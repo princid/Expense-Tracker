@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { Form, Input, message, Modal, Select } from "antd";
 import Spinner from "./Spinner";
 import axios from "axios";
-import CustomDialog from './CustomDialog';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 
 function AddEditTransaction({
   setShowAddEditTransactionModal,
@@ -76,11 +83,27 @@ function AddEditTransaction({
     setDialog({ title: '', content: '' });
   };
 
+
   const validateDate = (_, value) => {
     const pickedDate = new Date(value)
     const currentDate = new Date()
     return currentDate.valueOf() < pickedDate.valueOf() ? Promise.reject(new Error('Not accepted')) : Promise.resolve()
   }
+
+  const CustomDialog = ({ open, onClose, title, content }) => {
+    return (
+      <Dialog open={open} onClose={onClose}>
+        <DialogTitle>{title}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{content}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
+
 
   return (
     <Modal
@@ -89,10 +112,7 @@ function AddEditTransaction({
       onCancel={() => setShowAddEditTransactionModal(false)}
       footer={false}
     >
-      <CustomDialog 
-        open={open} title={dialog.title} content={dialog.content} 
-        actions={[{displayName: 'Cancel', onClick: resetDialog}]}
-      />
+      <CustomDialog open={open} onClose={resetDialog} title={dialog.title} content={dialog.content} />
       {loading && <Spinner />}
       <Form
         layout="vertical"
