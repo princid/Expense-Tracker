@@ -145,16 +145,12 @@ function Home() {
           <div>
             <div className="view-switch mx-5">
               <UnorderedListOutlined
-                className={`mx-3 ${
-                  viewType === "table" ? "active-icon" : "inactive-icon"
-                } `}
+                className={`mx-3 ${ viewType === "table" ? "active-icon" : "inactive-icon" } `}
                 onClick={() => setViewType("table")}
                 size={30}
               />
               <AreaChartOutlined
-                className={`${
-                  viewType === "analytics" ? "active-icon" : "inactive-icon"
-                } `}
+                className={`${ viewType === "analytics" ? "active-icon" : "inactive-icon" } `}
                 onClick={() => setViewType("analytics")}
                 size={30}
               />

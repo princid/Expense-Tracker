@@ -1,6 +1,7 @@
 import { Progress } from "antd";
 import React from "react";
 import "../resources/analatics.css";
+
 function Analatics({ transactions }) {
   const totalTransactions = transactions.length;
   const totalIncomeTransactions = transactions.filter(
