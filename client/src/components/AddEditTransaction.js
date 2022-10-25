@@ -76,6 +76,12 @@ function AddEditTransaction({
     setDialog({ title: '', content: '' });
   };
 
+  const validateDate = (_, value) => {
+    const pickedDate = new Date(value)
+    const currentDate = new Date()
+    return currentDate.valueOf() < pickedDate.valueOf() ? Promise.reject(new Error('Not accepted')) : Promise.resolve()
+  }
+
   return (
     <Modal
       title={selectedItemForEdit ? 'Edit Transaction' : 'Add Transaction'}
@@ -120,7 +126,9 @@ function AddEditTransaction({
           </Select>
         </Form.Item>
 
-        <Form.Item label="Date" name="date">
+        <Form.Item label="Date" name="date" rules={[
+          {message: 'Invalid Date!', validator: validateDate}
+        ]}>
           <Input type="date" />
         </Form.Item>
 
