@@ -28,6 +28,10 @@ function Register() {
     }
   }, [navigate]);
 
+  const validateName = (_, value) => {
+    return value.length >= 4 ? Promise.resolve() : Promise.reject(new Error("Name need minimum of 4 characters"))
+  }
+
   return (
     <div className="register">
       {loading && <Spinner />}
@@ -47,7 +51,8 @@ function Register() {
           <Form layout="vertical" onFinish={onFinish}>
             <h1>REGISTER</h1>
 
-            <Form.Item label="Name" name="name">
+            <Form.Item label="Name" name="name"
+                       rules={[{message: "Name should have minimum 4 characters!", validator: validateName, required: true}]}>
               <Input />
             </Form.Item>
             <Form.Item label="Email" name="email">
