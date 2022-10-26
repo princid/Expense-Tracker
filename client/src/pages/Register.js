@@ -55,7 +55,8 @@ function Register() {
                        rules={[{message: "Name should have minimum 4 characters!", validator: validateName, required: true}]}>
               <Input />
             </Form.Item>
-            <Form.Item label="Email" name="email">
+            <Form.Item label="Email" name="email"
+                       rules={[{message: "Email should be valid!", type: "email", required: true}]}>
               <Input />
             </Form.Item>
             <Form.Item label="Password" name="password">
