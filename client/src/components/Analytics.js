@@ -1,7 +1,7 @@
 import { Progress } from "antd";
 import React from "react";
 import "../resources/analytics.css";
-function Analytics({ transactions }) {
+function Analytics({ transactions, type }) {
   const totalTransactions = transactions.length;
   const totalIncomeTransactions = transactions.filter(
     (transaction) => transaction.type === "income"
@@ -111,19 +111,23 @@ function Analytics({ transactions }) {
       </div>
       <hr />
       <div className="row">
-        <div className="col-md-6">
-          <div className="category-analysis">
-            <h4 className="category-analysis-header">Income - Category Wise</h4>
-            <CategoryWiseTransactionChart transactionType="income" totalTurnOver={totalIncomeTurnover}/>
+      {(type === 'all' || type === 'income') &&(
+          <div className="col-md-6">
+            <div className="category-analysis">
+              <h4 className="category-analysis-header">Income - Category Wise</h4>
+              <CategoryWiseTransactionChart transactionType="income" totalTurnOver={totalIncomeTurnover}/>
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="col-md-6">
-          <div className="category-analysis">
-            <h4 className="category-analysis-header">Expense - Category Wise</h4>
-            <CategoryWiseTransactionChart transactionType="expense" totalTurnOver={totalExpenseTurnover}/>
+        {(type === 'all' || type === 'expense') && (
+          <div className="col-md-6">
+            <div className="category-analysis">
+              <h4 className="category-analysis-header">Expense - Category Wise</h4>
+              <CategoryWiseTransactionChart transactionType="expense" totalTurnOver={totalExpenseTurnover}/>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

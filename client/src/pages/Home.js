@@ -178,7 +178,7 @@ function Home() {
             <Table columns={columns} dataSource={transactionsData} pagination={getPaginationConfiguration(10)}/>
           </div>
         ) : (
-          <Analytics transactions={transactionsData} />
+          <Analytics transactions={transactionsData} type={type}/>
         )}
       </div>
 
