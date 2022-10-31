@@ -60,6 +60,7 @@ function Home() {
       message.error("Something went wrong");
     }
   };
+
   useEffect(() => {
     getTransactions();
   }, [frequency, selectedRange, type]);
@@ -107,6 +108,8 @@ function Home() {
       },
     },
   ];
+
+  const getPaginationConfiguration = (pageSize) => transactionsData.length > pageSize ? {pageSize} : false
 
   return (
     <DefaultLayout>
@@ -172,7 +175,7 @@ function Home() {
       <div className="table-analtics">
         {viewType === "table" ? (
           <div className="table">
-            <Table columns={columns} dataSource={transactionsData} />
+            <Table columns={columns} dataSource={transactionsData} pagination={getPaginationConfiguration(10)}/>
           </div>
         ) : (
           <Analatics transactions={transactionsData} />
