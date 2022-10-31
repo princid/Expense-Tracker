@@ -41,10 +41,10 @@ function Login() {
           <Form layout="vertical" onFinish={onFinish}>
             <h1>LOGIN</h1>
 
-            <Form.Item label="Email" name="email">
+            <Form.Item label="Email" name="email" rules={[ { message: "Please enter your email!", required: true } ]}>
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name="password">
+            <Form.Item label="Password" name="password" rules={[ { message: "Please enter your password!", required: true } ]}>
               <Input type="password" />
             </Form.Item>
 
