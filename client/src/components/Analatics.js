@@ -10,9 +10,9 @@ function Analatics({ transactions }) {
     (transaction) => transaction.type === "expense"
   );
   const totalIncomeTransactionsPercentage =
-    (totalIncomeTransactions.length / totalTransactions) * 100;
+    totalTransactions === 0 ? 0 : (totalIncomeTransactions.length / totalTransactions) * 100;
   const totalExpenceTransactionsPercentage =
-    (totalExpenceTransactions.length / totalTransactions) * 100;
+    totalTransactions === 0 ? 0 : (totalExpenceTransactions.length / totalTransactions) * 100;
 
   const totalTurnover = transactions.reduce(
     (acc, transaction) => acc + transaction.amount,
@@ -26,9 +26,9 @@ function Analatics({ transactions }) {
     .reduce((acc, transaction) => acc + transaction.amount, 0);
   console.log(totalExpenceTurnover);
   const totalIncomeTurnoverPercentage =
-    (totalIncomeTurnover / totalTurnover) * 100;
+    totalTurnover === 0 ? 0 : (totalIncomeTurnover / totalTurnover) * 100 ;
   const totalExpenceTurnoverPercentage =
-    (totalExpenceTurnover / totalTurnover) * 100;
+    totalTurnover === 0 ? 0 : (totalExpenceTurnover / totalTurnover) * 100;
 
   const categories = [
     "salary",
