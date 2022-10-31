@@ -42,6 +42,24 @@ function Analytics({ transactions }) {
     "tax",
   ];
 
+  const EmptyPlaceholder = ({message}) => <div className="empty-placeholder">{message}</div>
+
+  const CategoryWiseTransactionChart = ({transactionType, totalTurnOver}) => {
+    const incomeList = []
+    categories.forEach((category) => {
+      const amount = transactions
+        .filter((t) => t.type === transactionType && t.category === category)
+        .reduce((acc, t) => acc + t.amount, 0);
+        amount > 0 && incomeList.push(
+          <div className="category-card">
+            <h5>{category}</h5>
+            <Progress strokeColor="#0B5AD9" percent={((amount / totalTurnOver) * 100).toFixed( 0 )} />
+          </div>
+        );
+    })
+    return incomeList.length ? incomeList : <EmptyPlaceholder message={`No ${transactionType} found for the selected duration and type`}/>
+  }
+
   return (
     <div className="analytics">
       <div className="row">
@@ -95,49 +113,15 @@ function Analytics({ transactions }) {
       <div className="row">
         <div className="col-md-6">
           <div className="category-analysis">
-            <h4>Income - Category Wise</h4>
-            {categories.map((category) => {
-              const amount = transactions
-                .filter((t) => t.type == "income" && t.category === category)
-                .reduce((acc, t) => acc + t.amount, 0);
-              return (
-                amount > 0 && (
-                  <div className="category-card">
-                    <h5>{category}</h5>
-                    <Progress
-                      strokeColor="#0B5AD9"
-                      percent={((amount / totalIncomeTurnover) * 100).toFixed(
-                        0
-                      )}
-                    />
-                  </div>
-                )
-              );
-            })}
+            <h4 className="category-analysis-header">Income - Category Wise</h4>
+            <CategoryWiseTransactionChart transactionType="income" totalTurnOver={totalIncomeTurnover}/>
           </div>
         </div>
 
         <div className="col-md-6">
           <div className="category-analysis">
-            <h4>Expense - Category Wise</h4>
-            {categories.map((category) => {
-              const amount = transactions
-                .filter((t) => t.type == "expense" && t.category === category)
-                .reduce((acc, t) => acc + t.amount, 0);
-              return (
-                amount > 0 && (
-                  <div className="category-card">
-                    <h5>{category}</h5>
-                    <Progress
-                      strokeColor="#0B5AD9"
-                      percent={((amount / totalExpenseTurnover) * 100).toFixed(
-                        0
-                      )}
-                    />
-                  </div>
-                )
-              );
-            })}
+            <h4 className="category-analysis-header">Expense - Category Wise</h4>
+            <CategoryWiseTransactionChart transactionType="expense" totalTurnOver={totalExpenseTurnover}/>
           </div>
         </div>
       </div>
