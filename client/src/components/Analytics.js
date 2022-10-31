@@ -1,18 +1,18 @@
 import { Progress } from "antd";
 import React from "react";
-import "../resources/analatics.css";
-function Analatics({ transactions }) {
+import "../resources/analytics.css";
+function Analytics({ transactions }) {
   const totalTransactions = transactions.length;
   const totalIncomeTransactions = transactions.filter(
     (transaction) => transaction.type === "income"
   );
-  const totalExpenceTransactions = transactions.filter(
+  const totalExpenseTransactions = transactions.filter(
     (transaction) => transaction.type === "expense"
   );
   const totalIncomeTransactionsPercentage =
     (totalIncomeTransactions.length / totalTransactions) * 100;
-  const totalExpenceTransactionsPercentage =
-    (totalExpenceTransactions.length / totalTransactions) * 100;
+  const totalExpenseTransactionsPercentage =
+    (totalExpenseTransactions.length / totalTransactions) * 100;
 
   const totalTurnover = transactions.reduce(
     (acc, transaction) => acc + transaction.amount,
@@ -21,14 +21,14 @@ function Analatics({ transactions }) {
   const totalIncomeTurnover = transactions
     .filter((transaction) => transaction.type === "income")
     .reduce((acc, transaction) => acc + transaction.amount, 0);
-  const totalExpenceTurnover = transactions
+  const totalExpenseTurnover = transactions
     .filter((transaction) => transaction.type === "expense")
     .reduce((acc, transaction) => acc + transaction.amount, 0);
-  console.log(totalExpenceTurnover);
+  console.log(totalExpenseTurnover);
   const totalIncomeTurnoverPercentage =
     (totalIncomeTurnover / totalTurnover) * 100;
-  const totalExpenceTurnoverPercentage =
-    (totalExpenceTurnover / totalTurnover) * 100;
+  const totalExpenseTurnoverPercentage =
+    (totalExpenseTurnover / totalTurnover) * 100;
 
   const categories = [
     "salary",
@@ -50,7 +50,7 @@ function Analatics({ transactions }) {
             <h4>Total Transactions : {totalTransactions}</h4>
             <hr />
             <h5>Income : {totalIncomeTransactions.length}</h5>
-            <h5>Expense : {totalExpenceTransactions.length}</h5>
+            <h5>Expense : {totalExpenseTransactions.length}</h5>
 
             <div className="progress-bars">
               <Progress
@@ -62,7 +62,7 @@ function Analatics({ transactions }) {
               <Progress
                 strokeColor="#E5572F"
                 type="circle"
-                percent={totalExpenceTransactionsPercentage.toFixed(0)}
+                percent={totalExpenseTransactionsPercentage.toFixed(0)}
               />
             </div>
           </div>
@@ -73,7 +73,7 @@ function Analatics({ transactions }) {
             <h4>Total Turnover : {totalTurnover}</h4>
             <hr />
             <h5>Income : {totalIncomeTurnover}</h5>
-            <h5>Expense : {totalExpenceTurnover}</h5>
+            <h5>Expense : {totalExpenseTurnover}</h5>
 
             <div className="progress-bars">
               <Progress
@@ -85,7 +85,7 @@ function Analatics({ transactions }) {
               <Progress
                 strokeColor="#E5572F"
                 type="circle"
-                percent={totalExpenceTurnoverPercentage.toFixed(0)}
+                percent={totalExpenseTurnoverPercentage.toFixed(0)}
               />
             </div>
           </div>
@@ -130,7 +130,7 @@ function Analatics({ transactions }) {
                     <h5>{category}</h5>
                     <Progress
                       strokeColor="#0B5AD9"
-                      percent={((amount / totalExpenceTurnover) * 100).toFixed(
+                      percent={((amount / totalExpenseTurnover) * 100).toFixed(
                         0
                       )}
                     />
@@ -145,4 +145,4 @@ function Analatics({ transactions }) {
   );
 }
 
-export default Analatics;
+export default Analytics;
