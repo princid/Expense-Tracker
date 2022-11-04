@@ -58,4 +58,19 @@
 
 .ant-pagination-item a {
     color: rgba(0, 0, 0, 0.85) !important;
-  }
+}
+
+.empty-placeholder {
+    color: #aaaaaa;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.category-analysis {
+    padding: 10px;
+}
+
+.category-analysis-header {
+    text-align: center;
+    margin-bottom: 25px;
+}

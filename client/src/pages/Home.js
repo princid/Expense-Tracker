@@ -12,7 +12,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
-import Analatics from "../components/Analatics";
+import Analytics from "../components/Analytics";
 const { RangePicker } = DatePicker;
 function Home() {
   const [showAddEditTransactionModal, setShowAddEditTransactionModal] =
@@ -178,7 +178,7 @@ function Home() {
             <Table columns={columns} dataSource={transactionsData} pagination={getPaginationConfiguration(10)}/>
           </div>
         ) : (
-          <Analatics transactions={transactionsData} />
+          <Analytics transactions={transactionsData} type={type}/>
         )}
       </div>
 
