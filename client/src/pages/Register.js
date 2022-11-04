@@ -28,6 +28,15 @@ function Register() {
     }
   }, [navigate]);
 
+  const validateName = (_, value) => {
+    return value.length >= 4 ? Promise.resolve() : Promise.reject(new Error("Name need minimum of 4 characters"))
+  }
+
+  const validatePassword = (_, value) => {
+    const validationRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return validationRegex.test(value) ? Promise.resolve() : Promise.reject(new Error("Password does not matches the criteria"))
+  }
+
   return (
     <div className="register">
       {loading && <Spinner />}
@@ -47,13 +56,16 @@ function Register() {
           <Form layout="vertical" onFinish={onFinish}>
             <h1>REGISTER</h1>
 
-            <Form.Item label="Name" name="name">
+            <Form.Item label="Name" name="name"
+                       rules={[{message: "Name should have minimum 4 characters!", validator: validateName, required: true}]}>
               <Input />
             </Form.Item>
-            <Form.Item label="Email" name="email">
+            <Form.Item label="Email" name="email"
+                       rules={[{message: "Email should be valid!", type: "email", required: true}]}>
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name="password">
+            <Form.Item label="Password" name="password"
+                       rules={[{message: "Password must contain at least 8 characters, includes 1 number, 1 lowercase and uppercase letters and 1 special character", validator: validatePassword, required: true}]}>
               <Input type="password" />
             </Form.Item>
 
